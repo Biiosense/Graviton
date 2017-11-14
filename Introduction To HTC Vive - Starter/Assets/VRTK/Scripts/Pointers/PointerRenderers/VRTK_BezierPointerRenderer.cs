@@ -32,11 +32,11 @@ namespace VRTK
 
         [Tooltip("The maximum angle in degrees of the origin before the beam curve height is restricted. A lower angle setting will prevent the beam being projected high into the sky and curving back down.")]
         [Range(1, 100)]
-        public float heightLimitAngle = 200f;
+        public float heightLimitAngle = 100f;
         [Tooltip("The amount of height offset to apply to the projected beam to generate a smoother curve even when the beam is pointing straight.")]
         public float curveOffset = 1f;
         [Tooltip("Rescale each tracer element according to the length of the Bezier curve.")]
-        public bool rescaleTracer = true;
+        public bool rescaleTracer = false;
         [Tooltip("The cursor will be rotated to match the angle of the target surface if this is true, if it is false then the pointer cursor will always be horizontal.")]
         public bool cursorMatchTargetRotation = false;
         [Tooltip("The number of points along the bezier curve to check for an early beam collision. Useful if the bezier curve is appearing to clip through teleport locations. 0 won't make any checks and it will be capped at `Pointer Density`. The higher the number, the more CPU intensive the checks become.")]

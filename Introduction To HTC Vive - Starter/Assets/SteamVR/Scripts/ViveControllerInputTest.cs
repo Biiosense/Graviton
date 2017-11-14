@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViveControllerInputTest : MonoBehaviour {
+public class ViveControllerInputTest : MonoBehaviour
+{
 
     // 1
     private SteamVR_TrackedObject trackedObj;
@@ -11,15 +12,13 @@ public class ViveControllerInputTest : MonoBehaviour {
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
     }
-
     void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
-
     // Update is called once per frame
-    void Update () {
-
+    void Update()
+    {
         // 1
         if (Controller.GetAxis() != Vector2.zero)
         {
@@ -49,6 +48,5 @@ public class ViveControllerInputTest : MonoBehaviour {
         {
             Debug.Log(gameObject.name + " Grip Release");
         }
-
     }
 }
