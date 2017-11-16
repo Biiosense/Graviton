@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Game.unity
+- path: Assets/VRTK/Examples/036_Controller_CustomCompoundPointer.unity
   isLoaded: 1
   isActive: 1
