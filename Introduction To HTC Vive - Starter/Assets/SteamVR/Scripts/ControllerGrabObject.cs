@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerGrabObject : MonoBehaviour
-{
-    private SteamVR_TrackedObject trackedObj;
+public class ControllerGrabObject : MonoBehaviour {
 
+    // Use this for initialization
+    private SteamVR_TrackedObject trackedObj;
     // 1
     private GameObject collidingObject;
     // 2
     private GameObject objectInHand;
-
     private SteamVR_Controller.Device Controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -20,7 +19,6 @@ public class ControllerGrabObject : MonoBehaviour
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
-
     private void SetCollidingObject(Collider col)
     {
         // 1
@@ -31,7 +29,26 @@ public class ControllerGrabObject : MonoBehaviour
         // 2
         collidingObject = col.gameObject;
     }
+    // Update is called once per frame
+    void Update () {
+        // 1
+        if (Controller.GetHairTriggerDown())
+        {
+            if (collidingObject)
+            {
+                GrabObject();
+            }
+        }
 
+        // 2
+        if (Controller.GetHairTriggerUp())
+        {
+            if (objectInHand)
+            {
+                ReleaseObject();
+            }
+        }
+    }
     // 1
     public void OnTriggerEnter(Collider other)
     {
@@ -54,7 +71,6 @@ public class ControllerGrabObject : MonoBehaviour
 
         collidingObject = null;
     }
-
     private void GrabObject()
     {
         // 1
@@ -73,7 +89,6 @@ public class ControllerGrabObject : MonoBehaviour
         fx.breakTorque = 20000;
         return fx;
     }
-
     private void ReleaseObject()
     {
         // 1
@@ -88,28 +103,5 @@ public class ControllerGrabObject : MonoBehaviour
         }
         // 4
         objectInHand = null;
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-        // 1
-        if (Controller.GetHairTriggerDown())
-        {
-            if (collidingObject)
-            {
-                GrabObject();
-            }
-        }
-
-        // 2
-        if (Controller.GetHairTriggerUp())
-        {
-            if (objectInHand)
-            {
-                ReleaseObject();
-            }
-        }
-
     }
 }
