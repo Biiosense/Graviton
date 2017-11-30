@@ -870,11 +870,11 @@ namespace VRTK
         {
             initialFloorDrop = false;
             retogglePhysicsOnCanFall = false;
-            teleporter = (teleporter != null ? teleporter : GetComponentInChildren<VRTK_BasicTeleport>());
+            teleporter = null; /*(teleporter != null ? teleporter : GetComponentInChildren<VRTK_BasicTeleport>());
             if (teleporter != null)
             {
                 teleporter.Teleported += Teleported;
-            }
+            }*/
         }
 
         protected virtual void DisableDropToFloor()
