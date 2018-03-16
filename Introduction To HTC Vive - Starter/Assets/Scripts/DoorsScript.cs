@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class DoorsScript : MonoBehaviour {
 
-    public MonoBehaviour obj;
+    public MonoBehaviour victory_object;
     Animator anim;
     IVictoryCondition script;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         anim = GetComponent<Animator>();
-        script = obj.GetComponent(typeof(IVictoryCondition)) as IVictoryCondition;
+        if (victory_object.GetComponent(typeof(IVictoryCondition)))
+        {
+            script = victory_object.GetComponent(typeof(IVictoryCondition)) as IVictoryCondition;
+        }
+        else
+        {
+            Debug.LogError("Victory Object has to have a script implementing interface IVictoryCondition.");
+        }
     }
 	
 	// Update is called once per frame
-	void Update () {
-        anim.SetBool("won", script.getState());
+	void Update ()
+    {
+        if(script!=null)
+            anim.SetBool("won", script.getState());
 	}
 }
