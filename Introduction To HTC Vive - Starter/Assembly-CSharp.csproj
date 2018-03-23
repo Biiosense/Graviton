@@ -276,6 +276,7 @@
      <Compile Include="Assets\VRTK\Scripts\Controls\3D\VRTK_Slider.cs" />
      <Compile Include="Assets\VRTK\Scripts\Controls\3D\VRTK_SpringLever.cs" />
      <Compile Include="Assets\VRTK\Scripts\Controls\3D\VRTK_Wheel.cs" />
+     <Compile Include="Assets\VRTK\Scripts\Interactions\Custom\InteractableGravity.cs" />
      <Compile Include="Assets\VRTK\Scripts\Interactions\GrabAttachMechanics\VRTK_BaseGrabAttach.cs" />
      <Compile Include="Assets\VRTK\Scripts\Interactions\GrabAttachMechanics\VRTK_BaseJointGrabAttach.cs" />
      <Compile Include="Assets\VRTK\Scripts\Interactions\GrabAttachMechanics\VRTK_ChildOfControllerGrabAttach.cs" />
