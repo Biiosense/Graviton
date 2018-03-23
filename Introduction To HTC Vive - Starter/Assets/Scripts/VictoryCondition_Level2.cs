@@ -5,7 +5,7 @@ using UnityEngine;
 
 using VRTK;
 
-public class VictoryCondition_Level2 : MonoBehaviour, IVictoryCondition
+public class VictoryCondition_Level2 : MonoBehaviour, IDoorOpeningCondition
 {
 
     bool victory;
@@ -18,14 +18,8 @@ public class VictoryCondition_Level2 : MonoBehaviour, IVictoryCondition
 
     }
 
-    public bool getState()
+    public bool getConditionStatus()
     {
         return victory;
     }
-
-    public void setState(bool state)
-    {
-        victory = state;
-    }
-
 }

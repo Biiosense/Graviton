@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class DoorsScript : MonoBehaviour {
 
-    public MonoBehaviour victory_object;
+    public MonoBehaviour door_opening_object;
     Animator anim;
-    IVictoryCondition script;
+    IDoorOpeningCondition script;
 
 
 	// Use this for initialization
 	void Start ()
     {
         anim = GetComponent<Animator>();
-        if (victory_object.GetComponent(typeof(IVictoryCondition)))
+        if (door_opening_object.GetComponent(typeof(IDoorOpeningCondition)))
         {
-            script = victory_object.GetComponent(typeof(IVictoryCondition)) as IVictoryCondition;
+            script = door_opening_object.GetComponent(typeof(IDoorOpeningCondition)) as IDoorOpeningCondition;
         }
         else
         {
@@ -26,7 +26,7 @@ public class DoorsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(script!=null)
-            anim.SetBool("won", script.getState());
+        if (script != null)
+            anim.SetBool("won", script.getConditionStatus());
 	}
 }

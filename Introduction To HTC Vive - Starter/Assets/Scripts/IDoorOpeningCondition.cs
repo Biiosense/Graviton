@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IVictoryCondition
+public interface IDoorOpeningCondition
 {
-    void setState(bool state);
-    bool getState();
+    bool getConditionStatus();
 }

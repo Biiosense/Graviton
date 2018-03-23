@@ -46,8 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ButtonPressure.cs" />
      <Compile Include="Assets\Scripts\DoorsScript.cs" />
-     <Compile Include="Assets\Scripts\IVictoryCondition.cs" />
+     <Compile Include="Assets\Scripts\IDoorOpeningCondition.cs" />
      <Compile Include="Assets\Scripts\TeleportNextLevel.cs" />
      <Compile Include="Assets\Scripts\VictoryCondition_Level1.cs" />
      <Compile Include="Assets\Scripts\VictoryCondition_Level2.cs" />
