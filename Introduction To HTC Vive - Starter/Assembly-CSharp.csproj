@@ -48,7 +48,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonPressure.cs" />
      <Compile Include="Assets\Scripts\DoorsScript.cs" />
+     <Compile Include="Assets\Scripts\DoorsScriptAND.cs" />
+     <Compile Include="Assets\Scripts\DoorsScriptOR.cs" />
      <Compile Include="Assets\Scripts\IDoorOpeningCondition.cs" />
+     <Compile Include="Assets\Scripts\PressurePlatePressure.cs" />
      <Compile Include="Assets\Scripts\TeleportNextLevel.cs" />
      <Compile Include="Assets\Scripts\VictoryCondition_Level1.cs" />
      <Compile Include="Assets\Scripts\VictoryCondition_Level2.cs" />
