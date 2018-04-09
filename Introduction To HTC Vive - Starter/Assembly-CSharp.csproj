@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\DoorsScriptAND.cs" />
      <Compile Include="Assets\Scripts\DoorsScriptOR.cs" />
      <Compile Include="Assets\Scripts\IDoorOpeningCondition.cs" />
+     <Compile Include="Assets\Scripts\LEDColor.cs" />
      <Compile Include="Assets\Scripts\PressurePlatePressure.cs" />
      <Compile Include="Assets\Scripts\TeleportNextLevel.cs" />
      <Compile Include="Assets\Scripts\VictoryCondition_Level1.cs" />
