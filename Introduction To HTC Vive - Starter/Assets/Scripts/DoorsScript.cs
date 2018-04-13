@@ -12,7 +12,7 @@ public class DoorsScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = gameObject.GetComponentInChildren<Animator>();
         if (door_opening_object.GetComponent(typeof(IDoorOpeningCondition)))
             script = door_opening_object.GetComponent(typeof(IDoorOpeningCondition)) as IDoorOpeningCondition;
         else

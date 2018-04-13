@@ -13,7 +13,12 @@ public class DoorsScriptAND : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        anim = GetComponent<Animator>();
+        foreach (Transform child in GetComponentsInChildren<Transform>())
+        {
+            Debug.Log(child.gameObject.name);
+        }
+
+        anim = gameObject.GetComponentInChildren<Animator>();
         scripts = new List<IDoorOpeningCondition>();
         foreach (MonoBehaviour door_opening_object in door_opening_objects)
         {

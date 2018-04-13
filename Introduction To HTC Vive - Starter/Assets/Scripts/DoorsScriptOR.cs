@@ -12,7 +12,7 @@ public class DoorsScriptOR : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = gameObject.GetComponentInChildren<Animator>();
         scripts = new List<IDoorOpeningCondition>();
         foreach (MonoBehaviour door_opening_object in door_opening_objects)
         {
@@ -27,12 +27,9 @@ public class DoorsScriptOR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (scripts.Count > 0)
-        {
-            bool victory = false;
-            foreach (IDoorOpeningCondition script in scripts)
-                victory |= script.getConditionStatus();
-            anim.SetBool("won", victory);
-        }
+        bool victory = true;
+        foreach (Transform child in GetComponentsInChildren<Transform>())
+            if (child.gameObject.name == "LED" && child.gameObject.GetComponent<Renderer>().GetComponent<Material>().color != Color.green)
+                victory = false;
     }
 }
