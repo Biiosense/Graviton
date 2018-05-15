@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorsScriptOR : MonoBehaviour
+public class DoorsScriptWithLights : MonoBehaviour
 {
     Animator anim;
-
 
     // Use this for initialization
     void Start()
@@ -16,10 +15,10 @@ public class DoorsScriptOR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool victory = false;
+        bool victory = true;
         foreach (Transform child in GetComponentsInChildren<Transform>())
-            if (child.gameObject.name == "LED" && getLEDColor(child.gameObject) == Color.green)
-                victory = true;
+            if (child.gameObject.name == "LED" && getLEDColor(child.gameObject) == Color.red)
+                victory = false;
         
         anim.SetBool("won", victory);
     }

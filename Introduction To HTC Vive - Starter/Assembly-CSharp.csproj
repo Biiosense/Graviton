@@ -46,10 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BlinkingButton_Touchpad.cs" />
      <Compile Include="Assets\Scripts\ButtonPressure.cs" />
      <Compile Include="Assets\Scripts\DoorsScript.cs" />
      <Compile Include="Assets\Scripts\DoorsScriptAND.cs" />
-     <Compile Include="Assets\Scripts\DoorsScriptOR.cs" />
+     <Compile Include="Assets\Scripts\DoorsScriptWithLights.cs" />
      <Compile Include="Assets\Scripts\IDoorOpeningCondition.cs" />
      <Compile Include="Assets\Scripts\LEDColor.cs" />
      <Compile Include="Assets\Scripts\PressurePlatePressure.cs" />
