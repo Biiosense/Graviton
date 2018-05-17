@@ -6,42 +6,54 @@ using UnityEngine;
 using VRTK;
 
 public class DispenserPressure : MonoBehaviour {
-
+    
+    public Color color;
+    MonoBehaviour curr_cube;
 
     new Renderer renderer;
-
+    float time_last_pushed;
     VRTK_InteractableObject eventScript;
-
-    
 
     // Use this for initialization
     void Start ()
     {
-        
+        curr_cube = null;
         renderer = GetComponent<Renderer>();
+        time_last_pushed = 0.0f;
         eventScript = GetComponent(typeof(VRTK_InteractableObject)) as VRTK_InteractableObject;
         eventScript.InteractableObjectTouched += handleEvent;
     }
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        renderer.material.color = Color.yellow;
+    { 
+        if (time_last_pushed > 0.0f)
+        {
+            renderer.material.color = Color.green;
+            time_last_pushed -= Time.deltaTime;
+        }
+        else
+            renderer.material.color = color;
+        
     }
 
     void handleEvent(object sender, InteractableObjectEventArgs e)
     {
-        renderer.material.color = Color.green;
-        Spawn();
+        if (time_last_pushed <= 0.0f)
+        {
+            time_last_pushed = 0.5f;
+            Spawn();
+        }
     }
 
     void Spawn()
     {
-        Object prefab = UnityEditor.PrefabUtility.CreateEmptyPrefab("Assets/Prefabs/Objects/MovableObject.prefab");
-        var pos = transform.position;
-        pos.y += 1;
-        pos.z += 1;
-        //EditorUtility.ReplacePrefab(t.gameObject, prefab, ReplacePrefabOptions.ConnectToPrefab);
-        Instantiate(prefab, pos, Quaternion.identity);
+        if (curr_cube != null)
+            Destroy(curr_cube.gameObject);
+
+        Vector3 pos = transform.position;
+        pos += new Vector3(0, 1, Mathf.Sign(pos.y));
+        curr_cube = Instantiate(Resources.Load<MonoBehaviour>("MovableObject"), pos, Quaternion.identity);
+        curr_cube.GetComponent<Renderer>().material.color = color;
     }
 }

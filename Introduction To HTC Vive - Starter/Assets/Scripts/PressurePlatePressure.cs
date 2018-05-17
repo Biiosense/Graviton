@@ -4,41 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlatePressure : MonoBehaviour, IDoorOpeningCondition {
-
-    int objects_triggered_count;
+    
     new Renderer renderer;
+    float last_time_pressed;
 
     // Use this for initialization
     void Start ()
     {
-        objects_triggered_count = 0;
         renderer = GetComponent<Renderer>();
+        last_time_pressed = 0;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (objects_triggered_count > 0)
+        if (last_time_pressed > 0)
+        {
             renderer.material.color = Color.green;
+            last_time_pressed -= Time.deltaTime;
+        }
         else
             renderer.material.color = Color.red;
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "MovableObject")
         {
-            objects_triggered_count++;
+            last_time_pressed = 0.1f;
         }
     }
-
-    void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.tag == "MovableObject")
-        {
-            objects_triggered_count--;
-        }
-    }
+    
 
     public bool getConditionStatus()
     {

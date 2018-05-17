@@ -17,7 +17,7 @@ public class DoorsScriptWithLights : MonoBehaviour
     {
         bool victory = true;
         foreach (Transform child in GetComponentsInChildren<Transform>())
-            if (child.gameObject.name == "LED" && getLEDColor(child.gameObject) == Color.red)
+            if (child.gameObject.name == "LED" && getLEDColor(child.gameObject) != Color.green)
                 victory = false;
         
         anim.SetBool("won", victory);

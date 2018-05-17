@@ -50,7 +50,6 @@
      <Compile Include="Assets\Scripts\ButtonPressure.cs" />
      <Compile Include="Assets\Scripts\DispenserPressure.cs" />
      <Compile Include="Assets\Scripts\DoorsScript.cs" />
-     <Compile Include="Assets\Scripts\DoorsScriptAND.cs" />
      <Compile Include="Assets\Scripts\DoorsScriptWithLights.cs" />
      <Compile Include="Assets\Scripts\IDoorOpeningCondition.cs" />
      <Compile Include="Assets\Scripts\LEDColor.cs" />
