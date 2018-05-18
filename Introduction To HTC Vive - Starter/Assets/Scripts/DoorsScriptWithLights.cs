@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DoorsScriptWithLights : MonoBehaviour
 {
-    Animator anim;
+    Animator[] anims;
 
     // Use this for initialization
     void Start()
     {
-        anim = gameObject.GetComponentInChildren<Animator>();
+        anims = gameObject.GetComponentsInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -20,7 +20,8 @@ public class DoorsScriptWithLights : MonoBehaviour
             if (child.gameObject.name == "LED" && getLEDColor(child.gameObject) != Color.green)
                 victory = false;
         
-        anim.SetBool("won", victory);
+        foreach(Animator anim in anims)
+            anim.SetBool("won", victory);
     }
 
     static public Color getLEDColor(GameObject led)

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LEDColor : MonoBehaviour
+public class LEDColor : MonoBehaviour, IDoorOpeningCondition
 {
     public List<MonoBehaviour> door_opening_objects;
     List<IDoorOpeningCondition> scripts;
@@ -35,13 +36,23 @@ public class LEDColor : MonoBehaviour
         else
             setLEDColor(this.gameObject, Color.red);
     }
-   
+
 
     static public void setLEDColor(GameObject led, Color color)
     {
         foreach (Transform child in led.GetComponentsInChildren<Transform>())
             if (child != led.transform)
                 child.gameObject.GetComponent<Renderer>().material.color = color;
+    }
+
+    static public Color getLEDColor(GameObject led)
+    {
+        Color retour = Color.red;
+        foreach (Transform child in led.GetComponentsInChildren<Transform>())
+            if (child != led.transform)
+                retour = child.gameObject.GetComponent<Renderer>().material.color;
+
+        return retour;
     }
 
 
@@ -51,5 +62,10 @@ public class LEDColor : MonoBehaviour
             return obj.GetComponent(typeof(T)) as T;
         else
             throw new System.ArgumentException("Object " + obj.name + " doesn't have script of type " + typeof(T).Name + " attached.");
+    }
+
+    public bool getConditionStatus()
+    {
+        return getLEDColor(this.gameObject) == Color.green;
     }
 }
