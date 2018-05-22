@@ -6,37 +6,36 @@ using UnityEngine;
 public class LEDColor : MonoBehaviour, IDoorOpeningCondition
 {
     public List<MonoBehaviour> door_opening_objects;
-    List<IDoorOpeningCondition> scripts;
+    public List<MonoBehaviour> door_closing_objects;
+
+    List<IDoorOpeningCondition> door_opening_scripts;
+    List<IDoorOpeningCondition> door_closing_scripts;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        scripts = new List<IDoorOpeningCondition>();
-        foreach (MonoBehaviour obj in door_opening_objects)
-        {
-            if (obj.GetComponent(typeof(IDoorOpeningCondition)))
-                scripts.Add(obj.GetComponent(typeof(IDoorOpeningCondition)) as IDoorOpeningCondition);
-            else
-                Debug.LogError("Object " + obj.name + " has to have a script implementing interface IDoorOpeningCondition.");
-        }
-            
-
+        getScripts(door_opening_objects, out door_opening_scripts);
+        getScripts(door_closing_objects, out door_closing_scripts);
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
+        bool blocked = false;
+        foreach (IDoorOpeningCondition script in door_closing_scripts)
+            if (script.getConditionStatus())
+                blocked = true;
+
         bool victory = false;
-        foreach(IDoorOpeningCondition script in scripts)
+        foreach (IDoorOpeningCondition script in door_opening_scripts)
             if (script.getConditionStatus())
                 victory = true;
 
-        if (victory)
+        if (victory && !blocked)
             setLEDColor(this.gameObject, Color.green);
         else
             setLEDColor(this.gameObject, Color.red);
     }
-
 
     static public void setLEDColor(GameObject led, Color color)
     {
@@ -47,21 +46,23 @@ public class LEDColor : MonoBehaviour, IDoorOpeningCondition
 
     static public Color getLEDColor(GameObject led)
     {
-        Color retour = Color.red;
+        Color color = Color.red;
         foreach (Transform child in led.GetComponentsInChildren<Transform>())
             if (child != led.transform)
-                retour = child.gameObject.GetComponent<Renderer>().material.color;
-
-        return retour;
+                color = child.gameObject.GetComponent<Renderer>().material.color;
+        return color;
     }
 
-
-    static public T getScript<T>(MonoBehaviour obj) where T : MonoBehaviour
+    private void getScripts(List<MonoBehaviour> objects, out List<IDoorOpeningCondition> scripts)
     {
-        if (obj.GetComponent(typeof(T)))
-            return obj.GetComponent(typeof(T)) as T;
-        else
-            throw new System.ArgumentException("Object " + obj.name + " doesn't have script of type " + typeof(T).Name + " attached.");
+        scripts = new List<IDoorOpeningCondition>();
+        foreach (MonoBehaviour obj in objects)
+        {
+            if (obj.GetComponent(typeof(IDoorOpeningCondition)))
+                scripts.Add(obj.GetComponent(typeof(IDoorOpeningCondition)) as IDoorOpeningCondition);
+            else
+                Debug.LogError("Object " + obj.name + " has to have a script implementing interface IDoorOpeningCondition.");
+        }
     }
 
     public bool getConditionStatus()
@@ -69,3 +70,4 @@ public class LEDColor : MonoBehaviour, IDoorOpeningCondition
         return getLEDColor(this.gameObject) == Color.green;
     }
 }
+

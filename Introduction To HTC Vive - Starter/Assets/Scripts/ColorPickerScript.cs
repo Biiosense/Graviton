@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class ColorPickerScript : MonoBehaviour {
+public class ColorPickerScript : MonoBehaviour, IDoorOpeningCondition {
 
     private string[] color_names = new string[] { "white", "blue", "cyan", "grey", "orange", "purple", "black" };
     public MonoBehaviour capsule;
@@ -40,12 +40,11 @@ public class ColorPickerScript : MonoBehaviour {
             color_id = color_id % color_names.Length;
         }
     }
-
-    /*
+    
     public bool getConditionStatus()
     {
-        Renderer capsuleRenderer = capsule.GetComponent<Renderer>();
-        return capsuleRenderer.material.color == renderer.material.color;
-    }*/
+        Renderer capsuleRenderer = capsule.gameObject.GetComponent<Renderer>();
+        return capsuleRenderer.material.color.Equals(renderer.material.color);
+    }
 
 }

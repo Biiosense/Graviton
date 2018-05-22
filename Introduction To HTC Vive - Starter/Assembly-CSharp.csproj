@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BlinkingButton_Touchpad.cs" />
      <Compile Include="Assets\Scripts\ButtonPressure.cs" />
+     <Compile Include="Assets\Scripts\CapsuleScript.cs" />
      <Compile Include="Assets\Scripts\ColorPickerScript.cs" />
      <Compile Include="Assets\Scripts\DispenserPressure.cs" />
      <Compile Include="Assets\Scripts\DoorsScript.cs" />

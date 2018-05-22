@@ -5,9 +5,13 @@ using UnityEngine;
 
 using VRTK;
 
-public class DispenserPressure : MonoBehaviour {
-    
-    public Color color;
+public class DispenserPressure : MonoBehaviour
+{
+
+    public enum ColorName { white, blue, cyan, grey, magenta, orange, purple, yellow };
+    public ColorName color_name;
+    Color color;
+
     MonoBehaviour curr_cube;
 
     new Renderer renderer;
@@ -15,18 +19,19 @@ public class DispenserPressure : MonoBehaviour {
     VRTK_InteractableObject eventScript;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         curr_cube = null;
         renderer = GetComponent<Renderer>();
+        ColorUtility.TryParseHtmlString(color_name.ToString(), out color);
         time_last_pushed = 0.0f;
         eventScript = GetComponent(typeof(VRTK_InteractableObject)) as VRTK_InteractableObject;
         eventScript.InteractableObjectTouched += handleEvent;
     }
-	
-	// Update is called once per frame
-	void Update ()
-    { 
+
+    // Update is called once per frame
+    void Update()
+    {
         if (time_last_pushed > 0.0f)
         {
             renderer.material.color = Color.green;
@@ -34,7 +39,7 @@ public class DispenserPressure : MonoBehaviour {
         }
         else
             renderer.material.color = color;
-        
+
     }
 
     void handleEvent(object sender, InteractableObjectEventArgs e)
@@ -54,6 +59,8 @@ public class DispenserPressure : MonoBehaviour {
         Vector3 pos = transform.position;
         pos += new Vector3(0, 1, Mathf.Sign(pos.y));
         curr_cube = Instantiate(Resources.Load<MonoBehaviour>("MovableObject"), pos, Quaternion.identity);
-        curr_cube.GetComponent<Renderer>().material.color = color;
+
+        if (color_name.ToString() != "white")
+            curr_cube.GetComponent<Renderer>().material.color = color;
     }
 }
