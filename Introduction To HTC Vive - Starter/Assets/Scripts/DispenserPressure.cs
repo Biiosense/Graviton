@@ -8,7 +8,7 @@ using VRTK;
 public class DispenserPressure : MonoBehaviour
 {
 
-    public enum ColorName { white, blue, cyan, grey, magenta, orange, purple, yellow };
+    public enum ColorName { red, blue, cyan, grey, magenta, orange, purple, yellow };
     public ColorName color_name;
     Color color;
 
@@ -60,7 +60,7 @@ public class DispenserPressure : MonoBehaviour
         pos += new Vector3(0, 1, Mathf.Sign(pos.y));
         curr_cube = Instantiate(Resources.Load<MonoBehaviour>("MovableObject"), pos, Quaternion.identity);
 
-        if (color_name.ToString() != "white")
+        if (color_name.ToString() != "red")
             curr_cube.GetComponent<Renderer>().material.color = color;
     }
 }
