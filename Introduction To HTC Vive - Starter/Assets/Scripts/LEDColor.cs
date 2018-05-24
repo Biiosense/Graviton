@@ -11,9 +11,12 @@ public class LEDColor : MonoBehaviour, IDoorOpeningCondition
     List<IDoorOpeningCondition> door_opening_scripts;
     List<IDoorOpeningCondition> door_closing_scripts;
 
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         getScripts(door_opening_objects, out door_opening_scripts);
         getScripts(door_closing_objects, out door_closing_scripts);
     }

@@ -4,14 +4,40 @@ using UnityEngine;
 
 public class DoorAudioScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start ()
+    Animator animator;
+    AudioSource audioSource;
+    
+    void Start ()
     {
-        GetComponent<AudioSource>().Play();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
+        AnimationClip clip;
+        
+        AnimationEvent eventPlay = new AnimationEvent();
+        eventPlay.functionName = "PlayAudio";
+        clip = animator.runtimeAnimatorController.animationClips[0];
+        clip.AddEvent(eventPlay);
+
+        AnimationEvent eventPlayBackward = new AnimationEvent();
+        eventPlayBackward.functionName = "PlayAudioBackward";
+        clip = animator.runtimeAnimatorController.animationClips[1];
+        clip.AddEvent(eventPlayBackward);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    
+    public void PlayAudio()
+    {
+        Debug.Log("Play audio");
+        audioSource.timeSamples = 0;
+        audioSource.pitch = 1.2f;
+        audioSource.Play();
+    }
+
+    public void PlayAudioBackward()
+    {
+        Debug.Log("Play audio backward");
+        audioSource.timeSamples = audioSource.clip.samples -1;
+        audioSource.pitch = -1;
+        audioSource.Play();
+    }
 }
