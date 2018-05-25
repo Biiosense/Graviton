@@ -11,12 +11,9 @@ public class LEDColor : MonoBehaviour, IDoorOpeningCondition
     List<IDoorOpeningCondition> door_opening_scripts;
     List<IDoorOpeningCondition> door_closing_scripts;
 
-    AudioSource audioSource;
-
     // Use this for initialization
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         getScripts(door_opening_objects, out door_opening_scripts);
         getScripts(door_closing_objects, out door_closing_scripts);
     }
@@ -40,14 +37,14 @@ public class LEDColor : MonoBehaviour, IDoorOpeningCondition
             setLEDColor(this.gameObject, Color.red);
     }
 
-    static public void setLEDColor(GameObject led, Color color)
+    public void setLEDColor(GameObject led, Color color)
     {
         foreach (Transform child in led.GetComponentsInChildren<Transform>())
             if (child != led.transform)
                 child.gameObject.GetComponent<Renderer>().material.color = color;
     }
 
-    static public Color getLEDColor(GameObject led)
+    public Color getLEDColor(GameObject led)
     {
         Color color = Color.red;
         foreach (Transform child in led.GetComponentsInChildren<Transform>())
