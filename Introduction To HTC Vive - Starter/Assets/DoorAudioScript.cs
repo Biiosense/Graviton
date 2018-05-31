@@ -27,7 +27,6 @@ public class DoorAudioScript : MonoBehaviour {
     
     public void PlayAudio()
     {
-        Debug.Log("Play audio");
         audioSource.timeSamples = 0;
         audioSource.pitch = 1.2f;
         audioSource.Play();
@@ -35,7 +34,6 @@ public class DoorAudioScript : MonoBehaviour {
 
     public void PlayAudioBackward()
     {
-        Debug.Log("Play audio backward");
         audioSource.timeSamples = audioSource.clip.samples -1;
         audioSource.pitch = -1;
         audioSource.Play();
